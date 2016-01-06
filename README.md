@@ -5,7 +5,7 @@ Fell free to use it and change it to your needs.
 
 Official Silex website: [http://silex.sensiolabs.org/](http://silex.sensiolabs.org/)
 
-![http://silex.sensiolabs.org/images/logo.png](http://silex.sensiolabs.org/images/logo.png)
+![http://silex.sensiolabs.org/images/logo.png]
 
 
 - - -
