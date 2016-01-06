@@ -31,10 +31,13 @@ https://getcomposer.org/
 ```
 
 After you install dependencies, you should go to the configuration file:
+
 ```
-/app/config/config.example.php```  
+/app/config/config.example.php
+```
 
 and change it to:
+
 ```
 /app/config/config.php
 ```
@@ -53,6 +56,5 @@ Start by adding your routes in:
 
 - - -
 
-> At the moment, this project is just a bare-bones starter template without database connections, MVC structure etc.
-> I will create a develop branch, where I am going to expand framework to full MVC application, so feel free to check it out.
-> 
+`At the moment, this project is just a bare-bones starter template without database connections, MVC structure etc.
+I will create a develop branch, where I am going to expand framework to full MVC application, so feel free to check it out.`
