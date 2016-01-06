@@ -56,5 +56,4 @@ Start by adding your routes in:
 
 - - -
 
-`At the moment, this project is just a bare-bones starter template without database connections, MVC structure etc.
-I will create a develop branch, where I am going to expand framework to full MVC application, so feel free to check it out.`
+`This is develop branch - it is in charge of expanding Silex to full blown MVC framework, but simply as posible. Check it out once in a while - stil work in progress.`

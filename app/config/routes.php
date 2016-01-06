@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  **********************************
@@ -6,6 +6,5 @@
  **********************************
  */
 
-$app->get('/', function() {
-	return "Welcome home !";
-});
+$app->get('/', 'index.controller:index');
+

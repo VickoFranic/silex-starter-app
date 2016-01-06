@@ -6,7 +6,13 @@
             "email": "vfranic@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    },
     "require": {
-        "silex/silex": "^1.3"
+        "silex/silex": "^1.3",
+        "twig/twig": "^1.23"
     }
 }

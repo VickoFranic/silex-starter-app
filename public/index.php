@@ -6,19 +6,23 @@
 *****************************************
 */
 
-// Vendor autoloader
-require __DIR__ . '/../vendor/autoload.php';
+define('APP_PATH', realpath('..'));
+
+require_once APP_PATH . '/vendor/autoload.php';
+
+// Configuration file
+$config = include APP_PATH . '/app/config/config.php';
 
 $app = new Silex\Application();
 
-// Configuration file
-$config = include __DIR__ . '/../app/config/config.php';
-
-// Application routes
-include __DIR__ . '/../app/config/routes.php';
-
 // Get debug setup info from config
 $app['debug'] = $config['debug'];
+
+// Service providers
+include APP_PATH . '/app/config/services.php';
+
+// Application routes
+include APP_PATH . '/app/config/routes.php';
 
 // Run Silex app
 $app->run();
