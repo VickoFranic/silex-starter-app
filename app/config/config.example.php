@@ -2,7 +2,7 @@
 
 /*
 ******************************************************
-* THIS IS MAIN CONFIGURATION FILE FOR THE APPLICATIONS
+* THIS IS MAIN CONFIGURATION FILE FOR THE APPLICATION
 ******************************************************
 */	
 	return [
