@@ -1,0 +1,12 @@
+{
+    "name": "vicko/silex",
+    "authors": [
+        {
+            "name": "vickofranic",
+            "email": "vfranic@gmail.com"
+        }
+    ],
+    "require": {
+        "silex/silex": "^1.3"
+    }
+}
