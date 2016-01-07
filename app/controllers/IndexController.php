@@ -8,19 +8,19 @@ class IndexController
 {
 
 	/**
-	 * @var Silex\Application $app
+	 * @var \Twig_Environment
 	 */
-	protected $app;
+	protected $twig;
 
 
-	public function __construct( Application $app )
+	public function __construct( \Twig_Environment $twig )
 	{
-		$this->app = $app;
+		$this->twig = $twig;
 	}
 
 	public function index()
 	{
-		return $this->app['twig']->render('hello.twig');
+		return $this->twig->render('hello.twig');
 	}
 	
 }
