@@ -15,5 +15,5 @@ $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 
 // app\controllers\IndexController
 $app['index.controller'] = $app->share(function() use ($app) {
-	return new app\controllers\IndexController($app);
+	return new app\controllers\IndexController( $app['twig'] );
 });
