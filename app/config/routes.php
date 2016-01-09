@@ -6,5 +6,4 @@
  **********************************
  */
 
-$app->get('/', 'index.controller:index');
-
+$app->get('/', 'app\controllers\IndexController::index');
