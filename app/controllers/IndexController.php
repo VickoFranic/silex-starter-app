@@ -4,23 +4,26 @@ namespace app\controllers;
 
 use Silex\Application;
 
+/**
+ * Index controller 
+ *
+ */
+
 class IndexController
 {
-
+	
 	/**
-	 * @var \Twig_Environment
+	 * Home page action - renders Twig template with all books in database
 	 */
-	protected $twig;
-
-
-	public function __construct( \Twig_Environment $twig )
+	public function index( Application $app )
 	{
-		$this->twig = $twig;
-	}
+		// Book repository
+		$br = $app['repository.book'];
 
-	public function index()
-	{
-		return $this->twig->render('hello.twig');
+		// Get all books from DB
+		$books = $br->findAll();
+
+		return $app['twig']->render('home.twig', ['books' => $books]);
 	}
 	
 }
