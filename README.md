@@ -58,13 +58,17 @@ Create database on your localhost, and import dummy data table of books, sql fil
 
 ## Usage instructions
 
-Start by adding your routes in:
+Open your browser, and go to the root folder of project...You should see list of 20 books located in the database. Setup completed !
+
+> Book model and BookRepository are created for example purposes. Feel free to remove them and create your own models, repositories, controllers etc.
+
+
+Start by adding your own routes in:
 
 ```
 /app/config/routes.php
 ```
 
-> Book model and BookRepository are created for example purposes. Feel free to remove them and create your own models, repositories, controllers etc.
 
 Silex service providers that this starter app uses are:
 
