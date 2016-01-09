@@ -3,6 +3,9 @@
 SILEX is PHP micro-framework based on the Symfony2 Components, and this is my version of starter application template for Silex projects.
 Fell free to use it and change it to your needs.
 
+`At the moment, this project is just a bare-bones starter template without database connections, MVC structure etc.
+I will create a develop branch, where I am going to expand framework to full MVC application, so feel free to check it out.`
+
 Official Silex website: [http://silex.sensiolabs.org/](http://silex.sensiolabs.org/)
 
 ![Silex](http://silex.sensiolabs.org/images/logo.png)
@@ -53,8 +56,3 @@ Start by adding your routes in:
 /app/config/routes.php
 ```
 
-
-- - -
-
-`At the moment, this project is just a bare-bones starter template without database connections, MVC structure etc.
-I will create a develop branch, where I am going to expand framework to full MVC application, so feel free to check it out.`
