@@ -75,6 +75,12 @@ Silex service providers that this starter app uses are:
 - Twig
 - Doctrine
 
+Services are registered in:
+
+```
+/app/config/services.php
+```
+
 Check Silex documentation for more informations about available providers and how to register and use them:
 
 ```
