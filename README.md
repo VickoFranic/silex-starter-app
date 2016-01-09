@@ -60,7 +60,7 @@ Create database on your localhost, and import dummy data table of books, sql fil
 
 Open your browser, and go to the root folder of project...You should see list of 20 books located in the database. Setup completed !
 
-> Book model and BookRepository are created for example purposes. Feel free to remove them and create your own models, repositories, controllers etc.
+> Book model and BookRepository are created for example purposes. Feel free to remove them and create your own models, repositories, controllers, database tables etc.
 
 
 Start by adding your own routes in:
