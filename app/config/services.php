@@ -6,14 +6,16 @@
 *****************************************************
 */
 
+// $app['twig']
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
 	'twig.path'	=> APP_PATH . '/app/views',
 ));
 
-// Controllers as a service - Silex philosophy
-$app->register(new Silex\Provider\ServiceControllerServiceProvider());
+// $app['db']
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+	'db.options' => $config['database'],
+));
 
-// app\controllers\IndexController
-$app['index.controller'] = $app->share(function() use ($app) {
-	return new app\controllers\IndexController( $app['twig'] );
+$app['repository.book'] = $app->share(function() use ($app) {
+	return new app\repositories\BookRepository( $app['db'] );
 });
