@@ -1,7 +1,11 @@
-##Silex Starter App
+## Silex Starter App
 
 SILEX is PHP micro-framework based on the Symfony2 Components, and this is my version of starter application template for Silex projects.
 Fell free to use it and change it to your needs.
+
+UPDATE:
+This is develop branch, which is expanded to full MVC "starter kit" application - upgraded from bare-bones master branch.
+
 
 Official Silex website: [http://silex.sensiolabs.org/](http://silex.sensiolabs.org/)
 
@@ -11,7 +15,7 @@ Official Silex website: [http://silex.sensiolabs.org/](http://silex.sensiolabs.o
 - - -
 
 
-###Installation and setup
+## Installation and setup
 
 Download or clone project: 
 ```
@@ -42,10 +46,17 @@ and change it to:
 /app/config/config.php
 ```
 
-Adjust settings in this file to your own needs.
+Adjust settings in this file to your own needs (database name, debug state...)
+
+Create database on your localhost, and import dummy data table of books, sql file is located in:
+
+```
+/db/books.sql
+```
 
 
-##Usage instructions
+
+## Usage instructions
 
 Start by adding your routes in:
 
@@ -53,7 +64,15 @@ Start by adding your routes in:
 /app/config/routes.php
 ```
 
+> Book model and BookRepository are created for example purposes. Feel free to remove them and create your own models, repositories, controllers etc.
 
-- - -
+Silex service providers that this starter app uses are:
 
-`This is develop branch - it is in charge of expanding Silex to full blown MVC framework, but simply as posible. Check it out once in a while - stil work in progress.`
+- Twig
+- Doctrine
+
+Check Silex documentation for more informations about available providers and how to register and use them:
+
+```
+http://silex.sensiolabs.org/doc/providers.html
+```
