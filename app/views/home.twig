@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Silex Starter App</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    </head>
+    <body style="padding: 50px">
+
+        <h1>Silex Starter App</h1>
+
+        <hr>
+		{% if books is defined %}
+
+			{% for book in books %}
+                <div class="well">
+                    Name: <i>{{ book.name }}</i><br>
+                    Author: <b>{{ book.author }}</b>
+                </div>
+            {% endfor %}
+
+        {% endif %}
+    </body>
+</html>
