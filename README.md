@@ -1,8 +1,13 @@
 ## Silex Starter App
 
 SILEX is PHP micro-framework based on the Symfony2 Components, and this is my version of starter application template for Silex projects.
+<<<<<<< HEAD
 Fell free to use it and change it to your needs.
 Test commit.
+=======
+Fell free to use it and change it to your needs. This is test commit.
+
+>>>>>>> 88e045c70eeefb90d58e524904203093f1968dc5
 UPDATE:
 This is develop branch, which is expanded to full MVC "starter kit" application - upgraded from bare-bones master branch.
 
@@ -58,18 +63,28 @@ Create database on your localhost, and import dummy data table of books, sql fil
 
 ## Usage instructions
 
-Start by adding your routes in:
+Open your browser, and go to the root folder of project...You should see list of 20 books located in the database. Setup completed !
+
+> Book model and BookRepository are created for example purposes. Feel free to remove them and create your own models, repositories, controllers, database tables etc.
+
+
+Start by adding your own routes in:
 
 ```
 /app/config/routes.php
 ```
 
-> Book model and BookRepository are created for example purposes. Feel free to remove them and create your own models, repositories, controllers etc.
 
 Silex service providers that this starter app uses are:
 
 - Twig
 - Doctrine
+
+Services are registered in:
+
+```
+/app/config/services.php
+```
 
 Check Silex documentation for more informations about available providers and how to register and use them:
 
