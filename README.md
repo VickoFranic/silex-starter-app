@@ -3,7 +3,7 @@
 SILEX is PHP micro-framework based on the Symfony2 Components, and this is my version of starter application template for Silex projects.
 <<<<<<< HEAD
 Fell free to use it and change it to your needs.
-Test commit.
+
 =======
 Fell free to use it and change it to your needs. This is test commit.
 
