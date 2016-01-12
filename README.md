@@ -1,13 +1,8 @@
 ## Silex Starter App
 
 SILEX is PHP micro-framework based on the Symfony2 Components, and this is my version of starter application template for Silex projects.
-<<<<<<< HEAD
 Fell free to use it and change it to your needs.
 
-=======
-Fell free to use it and change it to your needs. This is test commit.
-
->>>>>>> 88e045c70eeefb90d58e524904203093f1968dc5
 UPDATE:
 This is develop branch, which is expanded to full MVC "starter kit" application - upgraded from bare-bones master branch.
 
