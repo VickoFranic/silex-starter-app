@@ -2,13 +2,13 @@
 
 namespace app\repositories;
 
-use app\models\Book;
+use app\models\User;
 use Doctrine\DBAL\Connection;
 
 /**
- * Example Book repository class
+ * User Repository
  */
-class BookRepository implements RepositoryInterface
+class UserRepository implements RepositoryInterface
 {
 	/**
 	 * @var \Doctrine\DBAL\Connection
@@ -21,34 +21,34 @@ class BookRepository implements RepositoryInterface
 	}
 
 	/**
-	 * Saves Book to database
-	 * @param array $book
+	 * Saves User to database
+	 * @param array $user
 	 * @return true | false 
 	 */
-	public function save($book)
+	public function save($user)
 	{
-		return $this->db->insert('books', $book);
+		return $this->db->insert('users', $user);
 	}
 
 	/**
-	 * Returns object data as array, matching given id
+	 * Returns specific user data as array, matching given id
 	 * @param integer $id
 	 * @return array
 	 */
-	public function find($id)
+	public function find($facebook_id)
 	{
-		$sql = "SELECT * FROM books WHERE id = ?";
+		$sql = "SELECT * FROM users WHERE facebook_id = ?";
 
 		return $this->db->fetchAssoc($sql, [ $id ]);
 	}
 
 	/**
-	 * Returns all books from database
+	 * Returns all users from database
 	 * @return array
 	 */
 	public function findAll()
 	{
-		$sql = "SELECT * FROM books";
+		$sql = "SELECT * FROM users";
 		return $this->db->fetchAll($sql);
 	}
 

@@ -8,22 +8,24 @@ use Silex\Application;
  * Index controller 
  *
  */
-
-class IndexController
+class IndexController extends ControllerBase
 {
-	
 	/**
-	 * Home page action - renders Twig template with all books in database
+	 * Index action
 	 */
 	public function index( Application $app )
 	{
-		// Book repository
-		$br = $app['repository.book'];
 
-		// Get all books from DB
-		$books = $br->findAll();
+		// User repository
+		$ur = $app['repositories.user'];
 
-		return $app['twig']->render('home.twig', ['books' => $books]);
+		// Get all users from DB
+		$users = $ur->findAll();
+
+		if ($users) {
+			return $this->successResponse($users, 201);
+		}
+		return $this->errorResponse('Users not found', 404);
 	}
-	
+
 }
