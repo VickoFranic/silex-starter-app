@@ -1,4 +1,4 @@
-<?php	
+<?php
 
 /*
 *****************************************
@@ -20,9 +20,6 @@ $app['debug'] = $config['debug'];
 
 // Service providers
 include APP_PATH . '/app/config/services.php';
-
-// Repositories
-include APP_PATH . '/app/config/repositories.php';
 
 // Application routes
 include APP_PATH . '/app/config/routes.php';

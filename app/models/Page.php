@@ -3,14 +3,19 @@
 namespace app\models;
 
 /**
- * User model
+ * Page model
  */
-class User
+class Page
 {
 	/**
 	 * @var string
 	 */
-	public $facebook_id;
+	public $page_id;
+
+	/**
+	 * @var string
+	 */
+	public $user_id;
 
 	/**
 	 * @var string
@@ -20,5 +25,5 @@ class User
 	/**
 	 * @var string
 	 */
-	public $access_token;
+	public $page_token;
 }

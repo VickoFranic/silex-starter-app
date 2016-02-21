@@ -4,28 +4,32 @@ namespace app\controllers;
 
 use Silex\Application;
 
-/**
- * Index controller 
- *
- */
 class IndexController extends ControllerBase
 {
 	/**
-	 * Index action
+	 * Index page
 	 */
 	public function index( Application $app )
 	{
 
-		// User repository
-		$ur = $app['repositories.user'];
-
-		// Get all users from DB
-		$users = $ur->findAll();
-
-		if ($users) {
-			return $this->successResponse($users, 201);
-		}
-		return $this->errorResponse('Users not found', 404);
+		$fb = $app['services.facebook'];
+		return $this->successResponse($fb->loginUrl());	
 	}
 
+	/** 
+	 * Login callback
+	 */
+	public function login( Application $app )
+	{
+		$fb = $app['services.facebook'];
+		$user = $fb->getUser();
+
+		if (! $user) {
+			return $this->errorResponse('Error');
+		}
+
+		$app['session']->set('user', $user);
+
+		return $app->redirect('/home');
+	}
 }

@@ -8,7 +8,7 @@ use Doctrine\DBAL\Connection;
 /**
  * User Repository
  */
-class UserRepository implements RepositoryInterface
+class UserRepository
 {
 	/**
 	 * @var \Doctrine\DBAL\Connection
@@ -21,25 +21,41 @@ class UserRepository implements RepositoryInterface
 	}
 
 	/**
-	 * Saves User to database
-	 * @param array $user
-	 * @return true | false 
+	 * Saves User to database, if doesn`t exist already
+	 * 
+	 * @param User $user
+	 * @return true | false
 	 */
 	public function save($user)
 	{
-		return $this->db->insert('users', $user);
+		if ($this->find($user->facebook_id)) {
+			return false;
+		}
+		return $this->db->insert('users', (array) $user);
+	}
+
+	/**
+	 * Update User data
+	 * @param User $user
+	 * @return true | false 
+	 */
+	public function update($user)
+	{
+		if (! $this->find($user->facebook_id)) {
+			return false;
+		}
+		return $this->db->update('users', (array) $user, array('facebook_id' => $user->facebook_id));
 	}
 
 	/**
 	 * Returns specific user data as array, matching given id
-	 * @param integer $id
+	 * @param string $facebook_id
 	 * @return array
 	 */
 	public function find($facebook_id)
 	{
 		$sql = "SELECT * FROM users WHERE facebook_id = ?";
-
-		return $this->db->fetchAssoc($sql, [ $id ]);
+		return $this->db->fetchAssoc($sql, [ $facebook_id ]);
 	}
 
 	/**
