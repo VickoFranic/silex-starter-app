@@ -13,7 +13,7 @@ $app->get('/', 'app\controllers\IndexController::index');
 $app->get('/login', 'app\controllers\IndexController::login');
 
 # User area
-$app->get('/home', 'app\controllers\UserController::index')->before('app\Middleware::user');
+$app->get('/home', 'app\controllers\UserController::index');
 $app->get('/home/pages', 'app\controllers\UserController::pages');
 
 # Admin area

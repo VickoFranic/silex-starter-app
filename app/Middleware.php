@@ -16,9 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
  	 */
 	function user(Request $req, Application $app)
 	{
-	 	if(! $app['session']->get('user')) {
-	 		return $app->redirect('/');
-	 	}
+	 	// Use for seomthing else
 	}
 
  }
