@@ -6,12 +6,6 @@ use Silex\Application;
 
 class UserController extends ControllerBase
 {
-	
-	function __construct()
-	{
-		# code...
-	}
-
 	/**
 	 * User home
 	 */
@@ -20,6 +14,9 @@ class UserController extends ControllerBase
 		return $this->successResponse($app['session']->get('user'));	
 	}
 
+	/**
+	 * User pages
+	 */
 	public function pages( Application $app )
 	{
 		/**

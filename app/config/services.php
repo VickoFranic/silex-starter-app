@@ -43,6 +43,10 @@ $app['repositories.facebook'] = $app->share(function() use ($config) {
 
 # SERVICES
 
+$app['middleware'] = $app->share(function() {
+	return new app\Middleware();
+});
+
 $app['services.user'] = $app->share(function() use ($app) {
 	return new app\services\UserService( $app['repositories.user'] );
 });
