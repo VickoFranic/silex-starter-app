@@ -64,6 +64,7 @@ class FacebookService
 	 * Fetches pages for user from facebook.
 	 * Returns false if no pages found for user.
 	 * 
+	 * @param User
 	 * @return array | false
 	 */
 	public function getPagesForUser($user)

@@ -8,7 +8,7 @@ class PageController extends ControllerBase
 {
 	/**
 	 * Page index. 
-	 * Get page facebook info.
+	 * Get page data from db.
 	 */
 	public function index( Application $app )
 	{
