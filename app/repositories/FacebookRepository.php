@@ -119,4 +119,25 @@ class FacebookRepository
 		return $res;
 	}
 
+	public function getPageEventsFromFacebook($page)
+	{
+		$res = [];
+
+		try {
+			/**
+			 * Facebook\GraphNodes\GraphEdge
+			 */
+			$response = $this->fb->get('/'.$page['page_id'].'/events', $page['page_token'])->getGraphEdge();
+		} catch (Exception $e) {
+			// Write to log or something
+			echo $e->getMessage();
+		}
+
+		if(! $response) {
+			return false;
+		}
+
+		return $response;
+	}
+
 }

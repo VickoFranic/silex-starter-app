@@ -1,7 +1,12 @@
 <?php
 
 namespace app\services;
-session_start();
+
+// Had to set it up this way, beacuse of Silex session provider
+if(!isset($_SESSION))
+{ 
+	session_start(); 
+} 
 
 use app\repositories\FacebookRepository;
 
@@ -78,6 +83,13 @@ class FacebookService
 		$this->ps->saveOrUpdatePagesForUser($pages, $user->facebook_id);
 
 		return $pages;
+	}
+
+	public function getEventsForPage($page)
+	{
+		$events = $this->fr->getPageEventsFromFacebook($page);
+
+		return $events;
 	}
 	
 }

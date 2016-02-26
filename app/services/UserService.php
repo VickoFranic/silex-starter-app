@@ -2,6 +2,7 @@
 
 namespace app\services;
 
+use Silex\Application;
 use app\models\User;
 use app\repositories\UserRepository;
 
@@ -35,4 +36,9 @@ class UserService
 		$this->ur->save($data);
 	}
 
+
+	public function getCurrentUser(Application $app)
+	{
+		return $this->app['session']->get('user');
+	}
 }
