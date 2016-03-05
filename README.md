@@ -17,3 +17,5 @@
 
 
 > If you want to try app, you need to email me your Facebook name, so that you can be whitelisted as allowed user. Application is still under development.
+
+> Email: vfranic@gmail.com
