@@ -11,7 +11,9 @@ class UserController extends ControllerBase
 	 */
 	public function index( Application $app )
 	{
-		return $this->successResponse($app['session']->get('user'));	
+		$us = $app['services.user'];
+
+		return $this->successResponse($us->getCurrentUser($app));	
 	}
 
 	/**
@@ -19,15 +21,10 @@ class UserController extends ControllerBase
 	 */
 	public function pages( Application $app )
 	{
-		/**
-		 * app\services\UserService
-		 */
 		$fb = $app['services.facebook'];
+		$us = $app['services.user'];
 
-		$user = $app['session']->get('user');
-		if(! $user) {
-			return $app->redirect('/');
-		}
+		$user = $us->getCurrentUser($app);
 
 		return $this->successResponse($fb->getPagesForUser($user));
 	}

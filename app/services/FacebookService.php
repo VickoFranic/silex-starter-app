@@ -53,8 +53,13 @@ class FacebookService
 	 */ 
 	public function getUser()
 	{
-		$token = $this->fr->getUserAccessTokenFromRedirect()->getValue();
-		$user = $this->fr->getUserDataFromFacebook($token);
+		$token = $this->fr->getUserAccessTokenFromRedirect();
+
+		if (! $token) {
+			return false;
+		}
+
+		$user = $this->fr->getUserDataFromFacebook($token->getValue());
 
 		if (! $user) {
 			return false;

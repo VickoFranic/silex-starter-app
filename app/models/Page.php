@@ -25,5 +25,20 @@ class Page
 	/**
 	 * @var string
 	 */
+	public $about;	
+
+	/**
+	 * @var string
+	 */
+	public $genre;
+
+	/**
+	 * @var int
+	 */
+	public $likes;
+
+	/**
+	 * @var string
+	 */
 	public $page_token;
 }

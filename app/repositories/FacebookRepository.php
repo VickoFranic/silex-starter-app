@@ -8,7 +8,7 @@ use app\models\Page;
 
 /**
 * FacebookRepository is helper class used for fetching data from Facebook
-* It doesn`t work with application DB, only with Facebook API
+* It doesn`t fetch data from application DB, only from Facebook API
 */
 class FacebookRepository
 {
@@ -104,13 +104,29 @@ class FacebookRepository
 		}
 
 		foreach ($response as $page) {
+
 			if ($page->getField('category') == 'Musician/Band') {
 				$tmp = new Page();
 
-				$tmp->page_id = $page->getField('id');
+				try {
+				/**
+				 * Facebook\GraphNodes\GraphEdge
+				 */
+				$pageData = $this->fb->get('/'.$page->getField('id').'?fields=about,genre,likes', $page->getField('access_token'))
+									 ->getGraphNode();
+
+				} catch (Exception $e) {
+					// Write to log or something
+					echo $e->getMessage();
+				}
+
+				$tmp->page_id = $pageData->getField('id');
 				$tmp->user_id = $user_id;
-				$tmp->name = $page->getField('name');
-				$tmp->page_token = $page->getField('access_token');							
+				$tmp->name = $pageData->getField('name');
+				$tmp->about = $pageData->getField('about');
+				$tmp->genre = $pageData->getField('genre');
+				$tmp->likes = $pageData->getField('likes');
+				$tmp->page_token = $page->getField('access_token');			
 				
 				$res[] = $tmp; 
 			}
@@ -119,6 +135,12 @@ class FacebookRepository
 		return $res;
 	}
 
+	/**
+	 * Get events for Facebook page
+	 * 
+	 * @param Page $page
+	 * @return array | bool
+	 */
 	public function getPageEventsFromFacebook($page)
 	{
 		$res = [];

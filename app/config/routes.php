@@ -14,7 +14,7 @@ $app->get('/login', 'app\controllers\IndexController::login');
 
 # User area
 $app->get('/home', 'app\controllers\UserController::index')->before('app\Middleware::user');
-$app->get('/home/pages', 'app\controllers\UserController::pages');
+$app->get('/home/pages', 'app\controllers\UserController::pages')->before('app\Middleware::user');
 $app->get('/home/pages/{page_id}', 'app\controllers\PageController::index')->before('app\Middleware::user');
 $app->get('/home/pages/{page_id}/events', 'app\controllers\PageController::events')->before('app\Middleware::user');
 

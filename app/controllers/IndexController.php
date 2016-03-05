@@ -13,7 +13,7 @@ class IndexController extends ControllerBase
 	{
 
 		$fb = $app['services.facebook'];
-		return $this->successResponse($fb->loginUrl());	
+		return $this->successResponse($fb->loginUrl());
 	}
 
 	/** 
@@ -25,7 +25,7 @@ class IndexController extends ControllerBase
 		$user = $fb->getUser();
 
 		if (! $user) {
-			return $this->errorResponse('Error');
+			return $app->redirect('/');
 		}
 
 		$app['session']->set('user', $user);

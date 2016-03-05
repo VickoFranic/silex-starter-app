@@ -39,6 +39,6 @@ class UserService
 
 	public function getCurrentUser(Application $app)
 	{
-		return $this->app['session']->get('user');
+		return $app['session']->get('user');
 	}
 }
