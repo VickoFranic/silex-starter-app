@@ -11,9 +11,9 @@ class IndexController extends ControllerBase
 	 */
 	public function index( Application $app )
 	{
-
 		$fb = $app['services.facebook'];
-		return $this->successResponse($fb->loginUrl());
+
+		return $app['twig']->render('/landing/index.twig', ['url' => $fb->loginUrl()]);
 	}
 
 	/** 
