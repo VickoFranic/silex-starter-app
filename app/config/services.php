@@ -26,7 +26,7 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 *************************
 */
 
-# REPOS
+# REPOSITORIES
 
 $app['repositories.user'] = $app->share(function() use ($app) {
 	return new app\repositories\UserRepository( $app['db'] );
@@ -36,9 +36,9 @@ $app['repositories.pages'] = $app->share(function() use ($app) {
 	return new app\repositories\PagesRepository( $app['db'] );
 });
 
-$app['repositories.facebook'] = $app->share(function() use ($config) {
+$app['repositories.facebook'] = $app->share(function() use ($app, $config) {
 	$fb = new Facebook($config['facebook']);
-	return new app\repositories\FacebookRepository( $fb, $config );
+	return new app\repositories\FacebookRepository( $fb, $config, $app['services.user'], $app['repositories.pages'], $app );
 });
 
 # SERVICES
