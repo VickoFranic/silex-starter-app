@@ -15,17 +15,7 @@ class Page
 	/**
 	 * @var string
 	 */
-	public $user_id;
-
-	/**
-	 * @var string
-	 */
 	public $name;
-
-	/**
-	 * @var string
-	 */
-	public $about;	
 
 	/**
 	 * @var string
@@ -37,8 +27,4 @@ class Page
 	 */
 	public $likes;
 
-	/**
-	 * @var string
-	 */
-	public $page_token;
 }
