@@ -3,6 +3,7 @@
 namespace app;
 
 use Silex\Application;
+use app\repositories\PagesRepository;
 use Symfony\Component\HttpFoundation\Request;
 
  /**
@@ -19,6 +20,23 @@ use Symfony\Component\HttpFoundation\Request;
 	 	if (! $app['session']->get('user')) {
 	 		return $app->redirect('/');
 	 	}
+	}
+
+ 	/**
+ 	 * Page middleware. Redirect to pages list if page doesn`t belong to logged in user.
+ 	 */
+	function page(Request $req, Application $app)
+	{
+		/**
+		 * app\repositories\PagesRepository
+		 */
+		$pr = $app['repositories.pages'];
+		$user = $app['session']->get('user');
+
+		if (! $pr->pageBelongsToUser($user->facebook_id, $req->get('page_id')) ) {
+			return $app->redirect('/home/pages');
+		}
+
 	}
 
  }
