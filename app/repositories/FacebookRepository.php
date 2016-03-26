@@ -22,10 +22,16 @@ class FacebookRepository
 	 */
 	protected $helper;
 
-	function __construct( Facebook $fb )
+	/**
+	 * array $config
+	 */
+	private $config;
+
+	function __construct( Facebook $fb, array $config )
 	{
 		$this->fb = $fb;
 		$this->helper = $this->fb->getRedirectLoginHelper();
+		$this->config = $config;
 	}
 
 	/**
@@ -36,8 +42,8 @@ class FacebookRepository
 	public function generateLoginUrl()
 	{
 		$perms = ['manage_pages'];
-		$callback = 'http://bandmanager.dev/login';
-
+		$callback = $this->config['domain'].'/login';
+		
 		return $this->helper->getLoginUrl($callback, $perms);
 	}
 
