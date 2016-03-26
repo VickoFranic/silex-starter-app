@@ -67,6 +67,11 @@ class FacebookRepository
 		return $this->helper->getLoginUrl($callback, $perms);
 	}
 
+	/**
+	 * Get user access token from redirect
+	 * 
+	 * @return string
+	 */
 	public function getUserAccessTokenFromRedirect()
 	{
 		try {
@@ -75,6 +80,7 @@ class FacebookRepository
 			// Write to log or something
 			echo $e->getMessage();
 		}
+
 		return $accessToken;
 	}
 
