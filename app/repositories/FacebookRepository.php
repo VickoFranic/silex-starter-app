@@ -2,9 +2,11 @@
 
 namespace app\repositories;
 
+use Silex\Application;
 use Facebook\Facebook;
 use app\models\User;
 use app\models\Page;
+use app\services\UserService;
 
 /**
 * FacebookRepository is helper class used for fetching data from Facebook
@@ -27,11 +29,29 @@ class FacebookRepository
 	 */
 	private $config;
 
-	function __construct( Facebook $fb, array $config )
+	/**
+	 * app\services\UserService
+	 */
+	protected $us;
+
+	/**
+	 * app\repositories\PagesRepository
+	 */
+	protected $pr;
+
+	/**
+	 * Silex\Application
+	 */
+	protected $app;
+
+	function __construct( Facebook $fb, array $config, UserService $us, PagesRepository $pr, Application $app )
 	{
 		$this->fb = $fb;
 		$this->helper = $this->fb->getRedirectLoginHelper();
 		$this->config = $config;
+		$this->us = $us;
+		$this->pr = $pr;
+		$this->app = $app;
 	}
 
 	/**
@@ -118,7 +138,7 @@ class FacebookRepository
 				/**
 				 * Facebook\GraphNodes\GraphEdge
 				 */
-				$pageData = $this->fb->get('/'.$page->getField('id').'?fields=about,genre,likes', $page->getField('access_token'))
+				$pageData = $this->fb->get('/'.$page->getField('id').'?fields=name,genre,likes', $page->getField('access_token'))
 									 ->getGraphNode();
 
 				} catch (Exception $e) {
@@ -129,12 +149,11 @@ class FacebookRepository
 				$tmp->page_id = $pageData->getField('id');
 				$tmp->user_id = $user_id;
 				$tmp->name = $pageData->getField('name');
-				$tmp->about = $pageData->getField('about');
 				$tmp->genre = $pageData->getField('genre');
 				$tmp->likes = $pageData->getField('likes');
 				$tmp->page_token = $page->getField('access_token');			
 				
-				$res[] = $tmp; 
+				$res[] = $tmp;
 			}
 		}
 
@@ -149,13 +168,14 @@ class FacebookRepository
 	 */
 	public function getPageEventsFromFacebook($page)
 	{
-		$res = [];
+		$user = $this->us->getCurrentUser($this->app);
+		$user_page = $this->pr->PageBelongsToUser($user->facebook_id, $page->page_id);
 
 		try {
 			/**
 			 * Facebook\GraphNodes\GraphEdge
 			 */
-			$response = $this->fb->get('/'.$page['page_id'].'/events', $page['page_token'])->getGraphEdge();
+			$response = $this->fb->get('/'.$page->page_id.'/events', $user_page[0]['page_token'])->getGraphEdge();
 		} catch (Exception $e) {
 			// Write to log or something
 			echo $e->getMessage();
