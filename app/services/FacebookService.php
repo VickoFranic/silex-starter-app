@@ -3,7 +3,7 @@
 namespace app\services;
 
 // Had to set it up this way, beacuse of Silex session provider
-if(!isset($_SESSION))
+if(! isset($_SESSION))
 { 
 	session_start(); 
 } 
@@ -22,7 +22,6 @@ class FacebookService
 	 */
 	protected $us;
 
-
 	/**
 	 * PagesService
 	 */
@@ -36,7 +35,7 @@ class FacebookService
 	}
 
 	/**
-	 * Generate login url
+	 * Generate login / request early access url
 	 * 
 	 * @return string
 	 */
@@ -46,7 +45,7 @@ class FacebookService
 	}
 
 	/**
-	 * Fetches user from facebook and returns it.
+	 * Fetches user from facebook, saves it to db and returns it.
 	 * Returns false on error.
 	 * 
 	 * @return array | bool
