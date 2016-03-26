@@ -18,5 +18,7 @@
 			'password'	=> 'root'
 		),
 
+		'domain' => 'http://AppDomain.dev'
+
 
 	];
