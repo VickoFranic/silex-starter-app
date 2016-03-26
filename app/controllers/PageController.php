@@ -20,10 +20,6 @@ class PageController extends ControllerBase
 		$user = $app['session']->get('user');
 		$page = $pr->findPageById($app['request']->get('page_id'));
 
-		if ( $user->facebook_id != $page['user_id'] ) {
-			return $app->redirect('/home/pages');
-		}
-
 		return $this->successResponse($page);
 	}
 
@@ -36,14 +32,14 @@ class PageController extends ControllerBase
 		 * app\repositories\PagesRepository
 		 */
 		$pr = $app['repositories.pages'];
+
+		/**
+		 * app\services\FacebookService
+		 */
 		$fs = $app['services.facebook'];
 
 		$user = $app['session']->get('user');
 		$page = $pr->findPageById($app['request']->get('page_id'));
-
-		if ( $user->facebook_id != $page['user_id'] ) {
-			return $app->redirect('/home/pages');
-		}
 
 		return $fs->getEventsForPage($page);
 
