@@ -38,7 +38,7 @@ $app['repositories.pages'] = $app->share(function() use ($app) {
 
 $app['repositories.facebook'] = $app->share(function() use ($config) {
 	$fb = new Facebook($config['facebook']);
-	return new app\repositories\FacebookRepository( $fb );
+	return new app\repositories\FacebookRepository( $fb, $config );
 });
 
 # SERVICES
