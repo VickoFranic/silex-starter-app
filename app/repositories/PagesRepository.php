@@ -30,9 +30,21 @@ class PagesRepository
 	public function save($pages, $user_id)
 	{
 		if (! $this->findAllByUser($user_id)) {
+
 			foreach ($pages as $page) {
-				$this->db->insert('pages', (array) $page); 
+				$this->db->insert('pages', array( 'page_id' => $page->page_id, 
+											 	  'name'	=> $page->name, 
+											 	  'genre' 	=> $page->genre, 
+											 	  'likes'	=> $page->likes ) 
+												);
+
+
+				$this->db->insert('user_pages', array( 'user_id' 	=> $page->user_id, 
+													   'page_id'	=> $page->page_id, 
+													   'page_token'	=> $page->page_token )
+													);
 			}
+
 			return true;
 		}
 
@@ -54,7 +66,23 @@ class PagesRepository
 		}
 
 		foreach ($pages as $page) {
-			$this->db->update('pages', (array) $page, array('page_id' => $page->page_id));
+			$this->db->update('pages', 
+							   array('page_id' 	=> $page->page_id, 
+							 	     'name'		=> $page->name, 
+							 	     'genre' 	=> $page->genre, 
+							 	     'likes'	=> $page->likes),
+
+							   array('page_id' => $page->page_id)
+							);
+
+			$this->db->update('user_pages', 
+							   array( 'user_id'		=> $page->user_id, 
+							   		  'page_id'		=> $page->page_id, 
+							   		  'page_token'	=> $page->page_token), 
+
+							   array('user_id' => $page->user_id, 
+							   		 'page_id' => $page->page_id)
+				);
 		}
 
 		return true;
@@ -64,12 +92,39 @@ class PagesRepository
 	 * Returns specific page data as array, matching given id
 	 * 
 	 * @param string $page_id
-	 * @return array
+	 * @return Page | false
 	 */
 	public function findPageById($page_id)
 	{
 		$sql = "SELECT * FROM pages WHERE page_id = ?";
-		return $this->db->fetchAssoc($sql, [ $page_id ]);
+		$res = $this->db->fetchAssoc($sql, [ $page_id ]);
+
+		if (! $res) {
+			return false;
+		}
+
+		$page = new Page();
+
+		$page->page_id = $res['page_id'];
+		$page->name = $res['name'];
+		$page->genre = $res['genre'];
+		$page->likes = $res['likes'];
+
+		return $page;
+	}
+
+
+	/**
+	 * Returns true if given page belongs to given user
+	 * 
+	 * @param string $page_id
+	 * @param string $user_id
+	 * @return bool
+	 */
+	public function pageBelongsToUser($user_id, $page_id)
+	{
+		$sql = "SELECT * FROM user_pages WHERE user_id = ? AND page_id = ?";
+		return $this->db->fetchAll($sql, [ $user_id, $page_id ]);
 	}
 
 	/**
@@ -79,7 +134,7 @@ class PagesRepository
 	 */
 	public function findAllByUser($user_id)
 	{
-		$sql = "SELECT * FROM pages WHERE user_id = ?";
+		$sql = "SELECT * FROM user_pages WHERE user_id = ?";
 		return $this->db->fetchAll($sql, [ $user_id ]);
 	}
 
