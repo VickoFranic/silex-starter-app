@@ -36,5 +36,15 @@ class PagesService
 		$this->pr->save($pages, $user_id);
 	}
 
+	/**
+	 * Return array of Page models for user
+	 * 
+	 * @param app\models\User
+	 * @return array
+	 */
+	public function getPagesForUser($user)
+	{
+		return $this->pr->findAllByUser($user->facebook_id);
+	}
 
 }
