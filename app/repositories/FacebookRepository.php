@@ -96,7 +96,7 @@ class FacebookRepository
 			/**
 			 * Facebook\GraphNodes\GraphUser
 			 */
-			$response = $this->fb->get('/me', $token)->getGraphUser();
+			$response = $this->fb->get('/me?fields=id,name,picture', $token)->getGraphUser();
 		} catch (Exception $e) {
 			// Write to log or something
 			echo $e->getMessage();
@@ -105,6 +105,7 @@ class FacebookRepository
 		$user = new User();
 		$user->facebook_id = $response->getId();
 		$user->name = $response->getName();
+		$user->picture = $response->getPicture()['url'];
 		$user->access_token = $token;
 
 		return $user;
@@ -144,7 +145,7 @@ class FacebookRepository
 				/**
 				 * Facebook\GraphNodes\GraphEdge
 				 */
-				$pageData = $this->fb->get('/'.$page->getField('id').'?fields=name,genre,likes', $page->getField('access_token'))
+				$pageData = $this->fb->get('/'.$page->getField('id').'?fields=name,picture.type(large),genre,likes', $page->getField('access_token'))
 									 ->getGraphNode();
 
 				} catch (Exception $e) {
@@ -155,6 +156,7 @@ class FacebookRepository
 				$tmp->page_id = $pageData->getField('id');
 				$tmp->user_id = $user_id;
 				$tmp->name = $pageData->getField('name');
+				$tmp->picture = $pageData->getField('picture')['url'];
 				$tmp->genre = $pageData->getField('genre');
 				$tmp->likes = $pageData->getField('likes');
 				$tmp->page_token = $page->getField('access_token');			
