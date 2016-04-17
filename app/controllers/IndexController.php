@@ -32,4 +32,11 @@ class IndexController extends ControllerBase
 
 		return $app->redirect('/home');
 	}
+
+	public function logout(Application $app)
+	{
+		$app['session']->clear();
+
+		return $app->redirect('/');
+	}
 }
