@@ -8,6 +8,7 @@
 
 ```
 - /								(App index)
+- /logout         (User logout)
 - /home							(User home)
 - /home/pages					(User`s FB pages)
 - /home/pages/{page_id}			(Single page info)
