@@ -33,7 +33,8 @@ class PagesRepository
 
 			foreach ($pages as $page) {
 				$this->db->insert('pages', array( 'page_id' => $page->page_id, 
-											 	  'name'	=> $page->name, 
+											 	  'name'	=> $page->name,
+											 	  'picture' => $page->picture,
 											 	  'genre' 	=> $page->genre, 
 											 	  'likes'	=> $page->likes ) 
 												);
@@ -67,10 +68,11 @@ class PagesRepository
 
 		foreach ($pages as $page) {
 			$this->db->update('pages', 
-							   array('page_id' 	=> $page->page_id, 
-							 	     'name'		=> $page->name, 
-							 	     'genre' 	=> $page->genre, 
-							 	     'likes'	=> $page->likes),
+							   array( 'page_id' 	=> $page->page_id, 
+							 	      'name'		=> $page->name,
+									  'picture' => $page->picture,							 	     
+							 	      'genre' 	=> $page->genre, 
+							 	      'likes'	=> $page->likes),
 
 							   array('page_id' => $page->page_id)
 							);
@@ -107,6 +109,7 @@ class PagesRepository
 
 		$page->page_id = $res['page_id'];
 		$page->name = $res['name'];
+		$page->picture = $res['picture'];
 		$page->genre = $res['genre'];
 		$page->likes = $res['likes'];
 
@@ -135,7 +138,13 @@ class PagesRepository
 	public function findAllByUser($user_id)
 	{
 		$sql = "SELECT * FROM user_pages WHERE user_id = ?";
-		return $this->db->fetchAll($sql, [ $user_id ]);
+		$pages = $this->db->fetchAll($sql, [ $user_id ]);
+
+		$res = [];
+		foreach ($pages as $page)
+			$res[] = $this->findPageById($page['page_id']);
+
+		return $res;
 	}
 
 }
