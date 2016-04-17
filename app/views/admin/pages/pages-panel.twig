@@ -1,0 +1,44 @@
+<h3>
+  <i class="fa fa-angle-right"></i> My bands
+</h3>
+
+<div class="row">
+
+{% for page in pages %}
+
+            <div class="col-lg-4 col-md-4 col-sm-4 mb">
+              <div class="weather-2 pn">
+
+                <div class="weather-2-header">
+                  <div class="row">
+                    <div class="col-sm-6 col-xs-6">
+                      <p>{{ page.name }}</p>
+                    </div>
+                  </div>
+                </div><!-- /weather-2 header -->
+
+                <div class="row centered">
+                  <img src="{{ page.picture }}" class="img-circle" width="100">       
+                </div>
+                <div class="row data">
+                  <div class="col-sm-6 col-xs-6 goleft">
+                    <h4><b>LIKES</b></h4>
+                    <h6>{{ page.likes }}</h6>
+                  </div>
+                  <div class="col-sm-6 col-xs-6 goright">
+                    <h4><b>Genre</b></h4>
+                    {% if page.genre is not empty %}
+                      <h6>{{ page.genre }}</h6>
+                    {% else %}
+                      <h6>No genre</h6>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+{% endfor %}
+</div>
+
+
+

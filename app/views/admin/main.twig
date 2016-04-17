@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'admin/partials/header.twig' %}
+
+<div class="col-lg-9 main-chart">
+
+  {% if pages is not empty %}
+    {% include 'admin/pages/pages-panel.twig' %}
+  {% else %}
+    <h3>Sorry, you have no pages.</h3>
+  {% endif %}
+</div>
+
+{% include 'admin/partials/footer.twig' %}
