@@ -8,9 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
  **********************************
  */
 
-# Guest area
+
 $app->get('/', 'app\controllers\IndexController::index');
 $app->get('/login', 'app\controllers\IndexController::login');
+$app->get('/logout', 'app\controllers\IndexController::logout');
+
 
 # User area
 $app->get('/home', 'app\controllers\UserController::index')->before('app\Middleware::user');
