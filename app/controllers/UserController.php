@@ -7,13 +7,17 @@ use Silex\Application;
 class UserController extends ControllerBase
 {
 	/**
-	 * User home
+	 * User home - dashboard view
 	 */
 	public function index( Application $app )
 	{
 		$us = $app['services.user'];
+		$ps = $app['services.pages'];
 
-		return $this->successResponse($us->getCurrentUser($app));	
+		$user = $us->getCurrentUser($app);
+		$pages = $ps->getPagesForUser($user);
+
+		return $app['twig']->render('/admin/main.twig', ['user' => $user, 'pages' => $pages ]);
 	}
 
 	/**
