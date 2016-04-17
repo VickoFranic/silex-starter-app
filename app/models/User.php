@@ -20,5 +20,10 @@ class User
 	/**
 	 * @var string
 	 */
+	public $picture;
+
+	/**
+	 * @var string
+	 */
 	public $access_token;
 }
