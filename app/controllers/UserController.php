@@ -20,16 +20,4 @@ class UserController extends ControllerBase
 		return $app['twig']->render('/admin/main.twig', ['user' => $user, 'pages' => $pages ]);
 	}
 
-	/**
-	 * User pages
-	 */
-	public function pages( Application $app )
-	{
-		$fb = $app['services.facebook'];
-		$us = $app['services.user'];
-
-		$user = $us->getCurrentUser($app);
-
-		return $this->successResponse($fb->getPagesForUser($user));
-	}
 }

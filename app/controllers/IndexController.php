@@ -29,7 +29,6 @@ class IndexController extends ControllerBase
 		}
 
 		$app['session']->set('user', $user);
-
 		return $app->redirect('/home');
 	}
 

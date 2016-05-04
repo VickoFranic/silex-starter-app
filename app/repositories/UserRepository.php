@@ -58,6 +58,22 @@ class UserRepository
 		return $this->db->fetchAssoc($sql, [ $facebook_id ]);
 	}
 
+	public function findByAccessToken($token)
+	{
+		$sql = "SELECT * FROM users WHERE access_token = ?";
+		$res = $this->db->fetchAssoc($sql, [ $token ]);
+
+		if ($res) {
+			$user = new User();
+			$user->facebook_id = $res['facebook_id'];
+			$user->name = $res['name'];
+			$user->picture = $res['picture'];
+			$user->access_token = $res['access_token'];
+		
+			return $user;
+		}
+	}
+
 	/**
 	 * Returns all users from database
 	 * @return array

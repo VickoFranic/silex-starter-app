@@ -41,4 +41,9 @@ class UserService
 	{
 		return $app['session']->get('user');
 	}
+
+	public function getUserByAccessToken($token)
+	{
+		return $this->ur->findByAccessToken($token);
+	}
 }
