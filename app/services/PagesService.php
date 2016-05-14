@@ -44,6 +44,10 @@ class PagesService
 	 */
 	public function getPagesForUser($user)
 	{
+		if (is_object($user)) {
+			return $this->pr->findAllByUserId($user->facebook_id);			
+		}
+		
 		return $this->pr->findAllByUserId($user['facebook_id']);
 	}
 
