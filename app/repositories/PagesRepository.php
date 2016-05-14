@@ -29,7 +29,7 @@ class PagesRepository
 	 */
 	public function save($pages, $user_id)
 	{
-		if (! $this->findAllByUser($user_id)) {
+		if (! $this->findAllByUserId($user_id)) {
 
 			foreach ($pages as $page) {
 				$this->db->insert('pages', array( 'page_id' => $page->page_id, 
@@ -60,7 +60,7 @@ class PagesRepository
 	 */
 	public function update($pages, $user_id)
 	{
-		$data = $this->findAllByUser($user_id);
+		$data = $this->findAllByUserId($user_id);
 
 		if (! $data) {
 			return false;

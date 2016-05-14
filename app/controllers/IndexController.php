@@ -29,6 +29,9 @@ class IndexController extends ControllerBase
 		}
 
 		$app['session']->set('user', $user);
+		
+		$fb->getPagesForUser($user);
+
 		return $app->redirect('/home');
 	}
 

@@ -26,7 +26,7 @@ class PagesService
 	 */
 	public function saveOrUpdatePagesForUser($pages, $user_id)
 	{
-		$data = $this->pr->findAllByUser($user_id);
+		$data = $this->pr->findAllByUserId($user_id);
 
 		# Update pages for user - refreshing page tokens
 		if($data) {
@@ -45,7 +45,7 @@ class PagesService
 	public function getPagesForUser($user)
 	{
 		if (is_object($user)) {
-			return $this->pr->findAllByUserId($user->facebook_id);			
+			return $this->pr->findAllByUserId($user->facebook_id);		
 		}
 		
 		return $this->pr->findAllByUserId($user['facebook_id']);
