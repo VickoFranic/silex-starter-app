@@ -131,11 +131,11 @@ class PagesRepository
 	}
 
 	/**
-	 * Returns all pages for user from database
+	 * Returns all pages for given user_id from database
 	 * 
 	 * @return array | false
 	 */
-	public function findAllByUser($user_id)
+	public function findAllByUserId($user_id)
 	{
 		$sql = "SELECT * FROM user_pages WHERE user_id = ?";
 		$pages = $this->db->fetchAll($sql, [ $user_id ]);

@@ -11,12 +11,11 @@ class ControllerBase
 	 * Success response
 	 * 
 	 * @var $data
-	 * @var $code
 	 * @return JSON
 	 */
-	public function successResponse($data, $code = 200)
+	public function successResponse($data)
 	{
-		return json_encode(['data' => $data, 'code' => $code]);
+		return json_encode($data);
 	}
 
 	/**
@@ -26,8 +25,8 @@ class ControllerBase
 	 * @var $code
 	 * @return JSON
 	 */
-	public function errorResponse($data = [], $code = [])
+	public function errorResponse($message = 'Error', $code = '500')
 	{
-		return json_encode(['data' => $data, 'code' => $code]);
+		return json_encode([$message, $code]);
 	}
 }

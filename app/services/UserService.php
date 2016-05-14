@@ -46,4 +46,9 @@ class UserService
 	{
 		return $this->ur->findByAccessToken($token);
 	}
+
+	public function getUserByFacebookId($facebook_id)
+	{
+		return $this->ur->find($facebook_id);
+	}
 }

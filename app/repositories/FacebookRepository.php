@@ -171,19 +171,20 @@ class FacebookRepository
 	/**
 	 * Get events for Facebook page
 	 * 
-	 * @param Page $page
+	 * @param string $page_id
 	 * @return array | bool
 	 */
-	public function getPageEventsFromFacebook($page)
+	public function getPageEventsFromFacebook($page_id)
 	{
 		$user = $this->us->getCurrentUser($this->app);
-		$user_page = $this->pr->PageBelongsToUser($user->facebook_id, $page->page_id);
+		$user_page = $this->pr->PageBelongsToUser($user->facebook_id, $page_id);
 
 		try {
 			/**
 			 * Facebook\GraphNodes\GraphEdge
 			 */
-			$response = $this->fb->get('/'.$page->page_id.'/events', $user_page[0]['page_token'])->getGraphEdge();
+			$response = $this->fb->get('/'.$page_id.'/events', $user_page['page_token'])->getGraphEdge();
+
 		} catch (Exception $e) {
 			// Write to log or something
 			echo $e->getMessage();

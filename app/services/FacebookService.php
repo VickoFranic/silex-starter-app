@@ -89,9 +89,9 @@ class FacebookService
 		return $pages;
 	}
 
-	public function getEventsForPage($page)
+	public function getEventsForPageId($page_id)
 	{
-		$events = $this->fr->getPageEventsFromFacebook($page);
+		$events = $this->fr->getPageEventsFromFacebook($page_id);
 
 		return $events;
 	}

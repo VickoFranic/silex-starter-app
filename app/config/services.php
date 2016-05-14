@@ -1,6 +1,8 @@
 <?php
 
 use Facebook\Facebook;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 /*
 *****************************************************

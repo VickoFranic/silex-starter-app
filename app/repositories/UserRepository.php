@@ -81,7 +81,22 @@ class UserRepository
 	public function findAll()
 	{
 		$sql = "SELECT * FROM users";
-		return $this->db->fetchAll($sql);
+		$res = $this->db->fetchAll($sql);
+
+		$users = [];
+		if ($res) {
+			foreach ($res as $us) {
+				$user = new User();
+				$user->facebook_id = $us['facebook_id'];
+				$user->name = $us['name'];
+				$user->picture = $us['picture'];
+				$user->access_token = $us['access_token'];
+				
+				$users[] = $user;
+			}
+		}
+
+		return $users;
 	}
 
 }

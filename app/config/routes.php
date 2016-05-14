@@ -9,7 +9,11 @@ use Symfony\Component\HttpFoundation\Request;
  */
 
 # API
- $app->post('/api/user/pages', 'app\controllers\Api\UserController::pages');
+ $app->post('/api/user/pages', 'app\controllers\Api\PageController::events');
+ $app->get('/api/users', 'app\controllers\Api\UserController::allUsers');
+$app->get('/api/pages/{facebook_id}', 'app\controllers\Api\UserController::pages');
+
+
 //$app->get('/home/pages/{page_id}', 'app\controllers\PageController::index')->before('app\Middleware::user')->before('app\Middleware::page');
 //$app->get('/home/pages/{page_id}/events', 'app\controllers\PageController::events')->before('app\Middleware::user')->before('app\Middleware::page');
 

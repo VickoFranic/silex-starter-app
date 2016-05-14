@@ -1,4 +1,3 @@
-
 var token = $('#access_token').val();
 
 var pages;

@@ -37,14 +37,14 @@ class PagesService
 	}
 
 	/**
-	 * Return array of Page models for user
+	 * Return array of Page models for given user
 	 * 
 	 * @param app\models\User
 	 * @return array
 	 */
 	public function getPagesForUser($user)
 	{
-		return $this->pr->findAllByUser($user->facebook_id);
+		return $this->pr->findAllByUserId($user['facebook_id']);
 	}
 
 }
