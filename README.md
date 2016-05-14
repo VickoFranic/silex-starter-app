@@ -2,7 +2,7 @@
 
 > My private app development
 
-<a href="https://bandmanager.herokuapp.com" target="_blank">https://bandmanager.herokuapp.com</a>
+<a href="http://bandmanager.vfdesign.org/" target="_blank">http://bandmanager.vfdesign.org/</a>
 
 ### Routes 
 
