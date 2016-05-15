@@ -1,12 +1,10 @@
 require.config({
-	baseUrl: 'assets/admin/js',
-	paths: {
-		'app': './bandmanager'
-	},
-	'shim': {
-		'jquery.alpha': ['jquery']
-	}
+	baseUrl: 'assets/admin/js'
 });
 
-require(["app/main"]);
-require(["app/dashboard/index"]);
+
+require(['jquery'], function() {
+
+	require(['underscore', 'bandmanager/main']);
+
+});

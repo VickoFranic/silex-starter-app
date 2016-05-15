@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
  $app->get('/api/users', 'app\controllers\api\UserController::allUsers');
 $app->get('/api/pages/{facebook_id}', 'app\controllers\api\UserController::pages');
 
+ $app->post('/api/user/notifications', 'app\controllers\api\PageController::latestPagesNotifications');
+
 
 //$app->get('/home/pages/{page_id}', 'app\controllers\PageController::index')->before('app\Middleware::user')->before('app\Middleware::page');
 //$app->get('/home/pages/{page_id}/events', 'app\controllers\PageController::events')->before('app\Middleware::user')->before('app\Middleware::page');

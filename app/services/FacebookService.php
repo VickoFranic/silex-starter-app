@@ -8,7 +8,9 @@ if(! isset($_SESSION))
 	session_start(); 
 } 
 
+use app\models\UserPages;
 use app\repositories\FacebookRepository;
+use Facebook\GraphNodes\GraphNode;
 
 class FacebookService
 {
@@ -94,6 +96,20 @@ class FacebookService
 		$events = $this->fr->getPageEventsFromFacebook($page_id);
 
 		return $events;
+	}
+
+	public function getLatestNotificationForPages($user_id, $pages)
+	{
+		$notifications = [];
+		foreach ($pages as $page) {
+			$tmp = $this->fr->getPageNotificationsFromFacebook($user_id, $page);
+
+			if ($tmp) {
+				$notifications[] = $tmp;
+			}
+		}
+
+		return $notifications;
 	}
 	
 }

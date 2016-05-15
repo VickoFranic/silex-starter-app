@@ -197,4 +197,43 @@ class FacebookRepository
 		return $response;
 	}
 
+
+	/**
+	 * Get notifications for Facebook page
+	 * 
+	 * @param string $user_id
+	 * @param Page $page
+	 * @return array | bool
+	 */
+	public function getPageNotificationsFromFacebook($user_id, Page $page)
+	{
+		$token = $this->pr->getTokenForUserIdAndPageId($user_id, $page->page_id);
+
+		try {
+			/**
+			 * Facebook\GraphNodes\GraphEdge
+			 */
+			$response = $this->fb->get('/'.$page->page_id.'?fields=notifications.limit(1){created_time,title,from}', $token)->getGraphObject();
+
+		} catch (Exception $e) {
+			// Write to log or something
+			echo $e->getMessage();
+		}
+
+		if(! $response->getField('notifications') ) {
+			return false;
+		}
+
+		$notificationObject = $response->getField('notifications');
+
+		$res = [];
+		foreach ($notificationObject as $data) {
+			$res['page'] = $page->name;
+			$res['created_time'] = $data['created_time']->format('Y-m-d H:i:s');
+			$res['title'] = $data['title'];
+		}
+
+		return $res;
+	}
+
 }

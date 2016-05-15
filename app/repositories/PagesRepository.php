@@ -141,10 +141,18 @@ class PagesRepository
 		$pages = $this->db->fetchAll($sql, [ $user_id ]);
 
 		$res = [];
-		foreach ($pages as $page)
+		foreach ($pages as $page) {
 			$res[] = $this->findPageById($page['page_id']);
+		}
+
 
 		return $res;
+	}
+
+	public function getTokenForUserIdAndPageId($user_id, $page_id)
+	{
+		$sql = "SELECT page_token FROM user_pages WHERE user_id = ? AND page_id = ?";
+		return $this->db->fetchColumn($sql, [ $user_id, $page_id ]);
 	}
 
 }

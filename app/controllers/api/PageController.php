@@ -36,4 +36,24 @@ class PageController extends ControllerBase
 		return $this->successResponse($events);
 	}
 
+	public function latestPagesNotifications(Request $request, Application $app)
+	{
+		$us = $app['services.user'];
+		$ps = $app['services.pages'];
+
+		$token = $request->get('access_token');
+		$user = $us->getUserByAccessToken($token);
+
+		$pages = $ps->getPagesForUser($user);
+
+		/**
+		 * app\services\FacebookServices
+		 */
+		$fs = $app['services.facebook'];
+
+		$notifications = $fs->getLatestNotificationForPages($user->facebook_id, $pages);
+
+		return $this->successResponse($notifications);
+	}
+
 }

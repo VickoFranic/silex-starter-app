@@ -35,4 +35,5 @@ class UserPages
 	{
 		return $app['repositories.pages']->findAllByUserId($user_id);
 	}
+	
 }

@@ -1,8 +1,6 @@
+/**
+ *  Index file for dashboard scripts and modules
+ */
 
-// Loading jQuery
-define(["jquery", "jquery.alpha"], function($) {
-
-    $(function() {
-        $('body').alpha;
-    });
-});
+// Notifications area
+require(["bandmanager/dashboard/notifications"]);
